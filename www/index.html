@@ -17,7 +17,8 @@
 
     function fetchAll() {
       let TestDataClass = ncmb.DataStore(db);
-      TestDataClass.order("nmae",false).fetchAll()
+      let input = $("#city").val(),
+      TestDataClass.equalTo("city",input).fetchAll()
         .then(function(results) {
           showResults(results);
         })
@@ -38,6 +39,17 @@
       // テーブルのテイラを生成
       msg += "</table>";
       $("#message").html(msg);
+    }
+
+    function searchName() {
+        let name = $("#name").val();
+        let TestDataClass = ncmb.DataStore(db);
+        TestDataClass
+        .equalTo("name", name)
+        .fetchAll()
+        .then(function(results) {
+            showResults(results);
+        })
     }
   </script>
 </head>
